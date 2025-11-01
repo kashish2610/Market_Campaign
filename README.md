@@ -91,7 +91,7 @@ Feature engineering was a crucial step to prepare the dataset for modelling:
 |  XGBoost                | 0.8916   | 0.94     | 0.88     |
 
 
-### Model Evaluation (LightGBM — Best Model)
+### Model Evaluation (XGBoost — Best Model)
 
 The **XGBoost** was tuned and evaluated on the test dataset with an optimal decision threshold of **0.85**.  
 The following summarizes the model’s performance metrics and classification outcomes.
