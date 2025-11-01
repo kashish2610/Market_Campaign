@@ -83,12 +83,54 @@ Feature engineering was a crucial step to prepare the dataset for modelling:
   - `xgboost`
   - `imblearn` for SMOTE handling
 
-### Example Results
+### Results
 | Model                  | Accuracy | F1-Score |   AUC     |
 |-------------------------|----------|----------|----------|
 | Adaboost                | 0.87     | 0.92     | 0.84     |
 | Gradient Boosting       | 0.88     | 0.93     | 0.88     |
 |  XGBoost                | 0.8916   | 0.94     | 0.88     |
+
+
+### Model Evaluation (LightGBM — Best Model)
+
+The **LightGBM classifier** was tuned and evaluated on the test dataset with an optimal decision threshold of **0.85**.  
+The following summarizes the model’s performance metrics and classification outcomes.
+
+#### Performance Metrics
+| Metric | Score |
+|---------|-------|
+| **Threshold** | 0.85 |
+| **Accuracy** | 0.8916 |
+| **F1-Score** | 0.50 |
+| **AUC-ROC** | 0.8815 |
+| **Precision (Positive class)** | 0.73 |
+| **Recall (Positive class)** | 0.38 |
+
+---
+
+#### Confusion Matrix
+|               | **Predicted: 0** | **Predicted: 1** |
+|---------------|------------------|------------------|
+| **Actual: 0** | 371 *(True Negatives)* | 9 *(False Positives)* |
+| **Actual: 1** | 39 *(False Negatives)* | 24 *(True Positives)* |
+
+**Interpretation:**
+- The model correctly classified **371 non-responders** and **24 responders**.  
+- **9 customers** were incorrectly predicted as responders, while **39 actual responders** were missed.  
+- Although overall accuracy is high (**~89%**), recall for the positive class is relatively lower due to class imbalance.  
+- The threshold of 0.85 favors precision, prioritizing fewer false positives (over-targeting fewer uninterested customers).
+
+---
+
+#### Classification Report
+| Class | Precision | Recall | F1-Score | Support |
+|--------|-----------|---------|-----------|----------|
+| **0 (No Response)** | 0.90 | 0.98 | 0.94 | 380 |
+| **1 (Response)** | 0.73 | 0.38 | 0.50 | 63 |
+| **Macro Avg** | 0.82 | 0.68 | 0.72 | 443 |
+| **Weighted Avg** | 0.88 | 0.89 | 0.88 | 443 |
+
+---
 
 
 
